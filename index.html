@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construtor de Mapas de Tiles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗺️ Construtor de Mapas de Tiles</h1>
+            <p>Crie mapas personalizados com regras de vizinhança</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Painel de Configuração -->
+            <div class="config-panel">
+                <div class="config-section">
+                    <h3>⚙️ Configurações do Mapa</h3>
+                    
+                    <div class="input-group">
+                        <label for="mapWidth">Largura:</label>
+                        <input type="number" id="mapWidth" min="4" max="32" value="16">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="mapHeight">Altura:</label>
+                        <input type="number" id="mapHeight" min="4" max="32" value="16">
+                    </div>
+                    
+                    <button id="generateMap" class="btn-primary">Gerar Mapa</button>
+                </div>
+
+                <div class="config-section">
+                    <h3>🎨 Texturas Disponíveis</h3>
+                    <div id="textureList" class="texture-list">
+                        <!-- Texturas serão adicionadas dinamicamente -->
+                    </div>
+                    <button id="addTexture" class="btn-secondary">+ Adicionar Textura</button>
+                </div>
+
+                <div class="config-section">
+                    <h3>📋 Regras de Vizinhança</h3>
+                    <div id="rulesDisplay" class="rules-display">
+                        <!-- Regras serão exibidas aqui -->
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3>🛠️ Ferramentas</h3>
+                    <button id="clearMap" class="btn-warning">Limpar Mapa</button>
+                    <button id="randomFill" class="btn-info">Preenchimento Aleatório</button>
+                    <button id="exportMap" class="btn-success">Exportar Mapa</button>
+                </div>
+            </div>
+
+            <!-- Área do Mapa -->
+            <div class="map-container">
+                <div class="map-header">
+                    <h3>🗺️ Mapa de Tiles</h3>
+                    <div class="selected-texture">
+                        <span>Textura Selecionada: </span>
+                        <span id="currentTexture">Nenhuma</span>
+                    </div>
+                </div>
+                <div id="mapGrid" class="map-grid">
+                    <!-- Grid será gerado dinamicamente -->
+                </div>
+                <div class="map-info">
+                    <span id="mapSize">Tamanho: 16x16</span>
+                    <span id="tileCount">Tiles: 0/256</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Adicionar Textura -->
+        <div id="textureModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Adicionar Nova Textura</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label for="textureName">Nome da Textura:</label>
+                        <input type="text" id="textureName" placeholder="Ex: Grama">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="textureColor">Cor da Textura:</label>
+                        <input type="color" id="textureColor" value="#4CAF50">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Texturas Vizinhas Permitidas:</label>
+                        <div id="neighborOptions" class="neighbor-options">
+                            <!-- Opções serão adicionadas dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="saveTexture" class="btn-primary">Salvar</button>
+                    <button id="cancelTexture" class="btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Editar Regras -->
+        <div id="rulesModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Editar Regras de Vizinhança</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label>Textura:</label>
+                        <span id="editingTexture"></span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Vizinhos Permitidos:</label>
+                        <div id="editNeighborOptions" class="neighbor-options">
+                            <!-- Opções serão adicionadas dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="saveRules" class="btn-primary">Salvar</button>
+                    <button id="cancelRules" class="btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
