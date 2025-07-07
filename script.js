@@ -1,8 +1,8 @@
 // Estado global da aplicação
 class TileMapBuilder {
   constructor() {
-    this.mapWidth = 32;
-    this.mapHeight = 32;
+    this.mapWidth = 100;
+    this.mapHeight = 100;
     this.currentTexture = null;
     this.textures = [];
     this.neighborhoodRules = {};
